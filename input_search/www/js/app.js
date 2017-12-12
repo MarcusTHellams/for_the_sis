@@ -7,6 +7,8 @@
     FindByNameView.prototype.template = Handlebars.compile($("#name-tpl").html());
     EmployeeListView.prototype.template = Handlebars.compile($("#employee-list-tpl").html());
     EmployeeView.prototype.template = Handlebars.compile($("#employee-tpl").html());
+    FindByDeptView.prototype.template = Handlebars.compile($("#dept-tpl").html());
+
     var slider = new PageSlider($('body'));
 
     var service = new EmployeeService();
@@ -20,6 +22,10 @@
 
             router.addRoute('name', function () {
                 slider.slidePage(new FindByNameView(service).render().$el);
+            });
+
+            router.addRoute('dept', function () {
+                slider.slidePage(new FindByDeptView(service).render().$el);
             });
 
             router.addRoute('employees/:id', function (id) {

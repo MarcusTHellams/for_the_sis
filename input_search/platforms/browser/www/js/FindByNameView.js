@@ -6,7 +6,7 @@ var FindByNameView = function (service) {
         this.$el = $('<div/>');
         this
             .$el
-            .on('keyup', '.search-key', this.findByName);
+            .on('keyup', '#firstName,#lastName', this.findByName);
         employeeListView = new EmployeeListView();
 
 
@@ -15,12 +15,12 @@ var FindByNameView = function (service) {
 
     this.render =  function () {
         this.$el.html(this.template());
-        $('.content', this.$el).html(employeeListView.$el);
+        $('.results', this.$el).html(employeeListView.$el);
         return this;
     };
 
     this.findByName = function() {
-        service.findByName($('.search-key').val()).done(function(employees) {
+        service.findByName($('#firstName').val().trim() + $('#lastName').val().trim()).done(function(employees) {
             employeeListView.setEmployees(employees);
         });
     };
