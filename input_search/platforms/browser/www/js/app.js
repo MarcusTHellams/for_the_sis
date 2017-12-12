@@ -4,6 +4,7 @@
     FastClick.attach(document.body);
 
     HomeView.prototype.template = Handlebars.compile($("#home-tpl").html());
+    FindByNameView.prototype.template = Handlebars.compile($("#name-tpl").html());
     EmployeeListView.prototype.template = Handlebars.compile($("#employee-list-tpl").html());
     EmployeeView.prototype.template = Handlebars.compile($("#employee-tpl").html());
     var slider = new PageSlider($('body'));
@@ -16,6 +17,10 @@
                 .addRoute('', function () {
                     slider.slidePage(new HomeView(service).render().$el);
                 });
+
+            router.addRoute('name', function () {
+                slider.slidePage(new FindByNameView(service).render().$el);
+            });
 
             router.addRoute('employees/:id', function (id) {
                 service
